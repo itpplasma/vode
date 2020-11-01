@@ -1,5 +1,5 @@
 ### Basic settings
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.13)
 
 ### Define the project
 project (vode)
