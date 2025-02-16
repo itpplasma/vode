@@ -35,7 +35,7 @@
 ! LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 ! ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ! POSSIBILITY OF SUCH DAMAGE.
-  
+
   MODULE DVODE_F90_M
 
 ! This version is the August 2013 release.
@@ -625,9 +625,9 @@
 ! are not appropriate for all problems.
 !
 ! RELERR can be set to a scalar value as follows.
-! Determine the number of significant digits of accuracy desired, 
+! Determine the number of significant digits of accuracy desired,
 ! which will be a positive integer, say, N.
-! Then set RELERR = 10**-(N+1). 
+! Then set RELERR = 10**-(N+1).
 ! The authors recommend that RELERR be no larger than 10**-4.
 ! The authors recommend a vector valued absolute error tolerance,
 ! which can be set as follows.
@@ -1971,7 +1971,7 @@
           MODULE PROCEDURE CHECK_STAT
 
 !         JACSP can be called to calculate a Jacobian using Doug Salane's
-!         algoritm 
+!         algoritm
           MODULE PROCEDURE JACSP
 
 !         DVDSM can be called to calculate sparse pointer arrays needed
@@ -2017,7 +2017,7 @@
         ALLOW_DEFAULT_TOLS, BUILD_IAJA, BOUNDS, CHANGED_ACOR, GROW, IAJA_CALLED,&
         J_HAS_BEEN_COMPUTED, J_IS_CONSTANT, LBIG, LBIG1, LBLOCK, MA48_WAS_USED, &
         OK_TO_CALL_MA28, SUBS, SUPS, OPTS_CALLED, REDO_PIVOT_SEQUENCE,          &
-        SCALE_MATRIX, SPARSE, USE_FAST_FACTOR, YMAXWARN  
+        SCALE_MATRIX, SPARSE, USE_FAST_FACTOR, YMAXWARN
 ! ..
 ! .. Local Arrays ..
       REAL (WP), ALLOCATABLE, PRIVATE :: ACOR(:), CSCALEX(:), EWT(:),           &
@@ -2315,8 +2315,8 @@
 ! number of steps to be changed without restarting the integration.
 ! ..
 !                     Quick Summary of Options
-! HMAX                   - Maximum step size in DVODE 
-! HMIN                   - Minimum step size in DVODE 
+! HMAX                   - Maximum step size in DVODE
+! HMIN                   - Minimum step size in DVODE
 ! MXSTEP                 - Maximum number of integration steps in DVODE
 ! ..
      IMPLICIT NONE
@@ -2469,7 +2469,7 @@
 !       DO I = 1, NEQ
 !          PD(I,J) = ... DF(I)/DY(J)
 !       END DO
-!    END DO       
+!    END DO
 !
 ! For a banded Jacobian, load PD(I-J+MU+1,J) with
 ! DF(I)/DY(J) where ML is the lower bandwidth
@@ -2512,7 +2512,7 @@
 ! ..
         RUSER(1:LRWUSER) = ZERO
         IUSER(1:LIWUSER) = 0
-        
+
 !       Allow default error tolerances?
         ALLOW_DEFAULT_TOLS = .FALSE.
 
@@ -2885,8 +2885,8 @@
 !                     Quick Summary of Options
 
 ! DENSE_J                - Jacobian is sparse alternative to MF
-! BANDED_J               - Jacobian is banded alternative to MF 
-! SPARSE_J               - Jacobian is sparse alternative to MF   
+! BANDED_J               - Jacobian is banded alternative to MF
+! SPARSE_J               - Jacobian is sparse alternative to MF
 ! USER_SUPPLIED_JACOBIAN - User will supply Jacobian subroutine
 !                          (user supplied subroutine JAC required)
 ! LOWER_BANDWIDTH        - Lower bandwidth ML in DVODE
@@ -2896,8 +2896,8 @@
 ! ABSERR_VECTOR          - Vector absolute error tolerance in DVODE
 ! TCRIT                  - Critical time TCRIT in DVODE
 ! H0                     - Starting step size in DVODE
-! HMAX                   - Maximum step size in DVODE 
-! HMIN                   - Minimum step size in DVODE 
+! HMAX                   - Maximum step size in DVODE
+! HMIN                   - Minimum step size in DVODE
 ! MAXORD                 - Maximum integration order in DVODE
 ! MXSTEP                 - Maximum number of integration steps
 !                          in DVODE
@@ -2905,7 +2905,7 @@
 ! NZSWAG                 - guess for the number of nonzeros in sparse
 !                          Jacobian
 ! USER_SUPPLIED_SPARSITY - user will supply sparsity structure
-!                          arrays by calling USERSETS_IAJA 
+!                          arrays by calling USERSETS_IAJA
 ! MA28_RPS               - Redo MA28AD pivot sequence if a singularity
 !                          is encountered
 ! NEVENTS                - number of user defined root finding functions
@@ -3009,8 +3009,8 @@
 !   OPTS%ATOL   = Absolute error tolerance(s) (ATOL)
 !   OPTS%RTOL   = Relative error tolerance(s) (RTOL)
 !   OPTS%DENSE  = Use dense linear algebra
-!   OPTS%BANDED = Use banded linear algebra 
-!   OPTS%SPARSE = Use sparse linear algebra 
+!   OPTS%BANDED = Use banded linear algebra
+!   OPTS%SPARSE = Use sparse linear algebra
 !   OPTS%IOPT   = DVODE optional parameter input flag (IOPT)
 !   OPTS%NG     = Number of event functions
 !   RUSER(1)    = TCRIT (don't step past)
@@ -3184,7 +3184,7 @@
 !       DO I = 1, NEQ
 !          PD(I,J) = ... DF(I)/DY(J)
 !       END DO
-!    END DO       
+!    END DO
 !
 ! For a banded Jacobian, load PD(I-J+MU+1,J) with
 ! DF(I)/DY(J) where ML is the lower bandwidth
@@ -3234,7 +3234,7 @@
 !         Recommendation:
 !         Use the DENSE or BANDED option if possible. They do
 !         not require use of most of the options described here.
-!    
+!
 !  (2) The Jacobian is approximated internally using differences
 !      if you do not provide an analytic Jacobian. The option
 !      USER_SUPPLIED_JACOBIAN=.TRUE. may be used if you wish to
@@ -3342,7 +3342,7 @@
 ! ..
     RUSER(1:LRWUSER) = ZERO
     IUSER(1:LIWUSER) = 0
-    
+
 !   Allow default error tolerances?
     ALLOW_DEFAULT_TOLS = .FALSE.
 
@@ -3868,8 +3868,8 @@
 
 ! METHOD_FLAG            - any legal value of MF as in DVODE
 ! DENSE_J                - Jacobian is sparse alternative to MF
-! BANDED_J               - Jacobian is banded alternative to MF 
-! SPARSE_J               - Jacobian is sparse alternative to MF   
+! BANDED_J               - Jacobian is banded alternative to MF
+! SPARSE_J               - Jacobian is sparse alternative to MF
 ! USER_SUPPLIED_JACOBIAN - User will supply Jacobian subroutine
 !                          (user supplied subroutine JAC required)
 ! SAVE_JACOBIAN          - Jacobian will be saved and reused
@@ -3886,8 +3886,8 @@
 ! ABSERR_VECTOR          - Vector absolute error tolerance in DVODE
 ! TCRIT                  - Critical time TCRIT in DVODE
 ! H0                     - Starting step size in DVODE
-! HMAX                   - Maximum step size in DVODE 
-! HMIN                   - Minimum step size in DVODE 
+! HMAX                   - Maximum step size in DVODE
+! HMIN                   - Minimum step size in DVODE
 ! MAXORD                 - Maximum integration order in DVODE
 ! MXSTEP                 - Maximum number of integration steps
 !                          in DVODE
@@ -3899,7 +3899,7 @@
 ! NZSWAG                 - guess for the number of nonzeros in sparse
 !                          Jacobian
 ! USER_SUPPLIED_SPARSITY - user will supply sparsity structure
-!                          arrays by calling USERSETS_IAJA 
+!                          arrays by calling USERSETS_IAJA
 ! MA28_ELBOW_ROOM        - Supply an integer greater than 2 if you
 !                          wish to increase the elbow room in the
 !                          MA28 work arrays (by MA28_ELBOW_ROOM * NZA).
@@ -4053,8 +4053,8 @@
 !   OPTS%ATOL   = Absolute error tolerance(s) (ATOL)
 !   OPTS%RTOL   = Relative error tolerance(s) (RTOL)
 !   OPTS%DENSE  = Use dense linear algebra
-!   OPTS%BANDED = Use banded linear algebra 
-!   OPTS%SPARSE = Use sparse linear algebra 
+!   OPTS%BANDED = Use banded linear algebra
+!   OPTS%SPARSE = Use sparse linear algebra
 !   OPTS%IOPT   = DVODE optional parameter input flag (IOPT)
 !   OPTS%NG     = Number of event functions
 !   RUSER(1)    = TCRIT (don't step past)
@@ -4305,7 +4305,7 @@
 !       DO I = 1, NEQ
 !          PD(I,J) = ... DF(I)/DY(J)
 !       END DO
-!    END DO       
+!    END DO
 !
 ! For a banded Jacobian, load PD(I-J+MU+1,J) with
 ! DF(I)/DY(J) where ML is the lower bandwidth
@@ -4355,7 +4355,7 @@
 !         Recommendation:
 !         Use the DENSE or BANDED option if possible. They do
 !         not require use of most of the options described here.
-!    
+!
 !  (2) The Jacobian is approximated internally using differences
 !      if you do not provide an analytic Jacobian. The option
 !      USER_SUPPLIED_JACOBIAN=.TRUE. may be used if you wish to
@@ -4527,7 +4527,7 @@
 ! ..
     RUSER(1:LRWUSER) = ZERO
     IUSER(1:LIWUSER) = 0
-    
+
 !   Allow default error tolerances?
     ALLOW_DEFAULT_TOLS = .FALSE.
 
@@ -5864,7 +5864,7 @@
 !     Allocate the RWORK and WM work arrays if they haven't already
 !     been allocated in a previous call.
 !     LRW = 20 + (MAXORD + 1) * NEQ
-!     LWMDIM =     
+!     LWMDIM =
 !            0                        for MF = 10,
 !            2 * NEQ**2               for MF = 11 or 12,
 !            NEQ**2                   for MF = -11 or -12,
@@ -6400,7 +6400,7 @@
         CALL XERRDV(MSG,950,1,1,MXHNIL,0,0,ZERO,ZERO)
 230     CONTINUE
         IF (BOUNDS) THEN
-!         Check positive components for infeasible prediction; reduce 
+!         Check positive components for infeasible prediction; reduce
 !         step size if infeasible prediction will occur in DVNLSD.
           ACOR(1:N) = RWORK(LYH:LYH+N-1)
 !         Predict:
@@ -10393,7 +10393,7 @@
         IF (DUMMY) THEN
           WM(1) = ZERO
           IWM(1) = 0
-        END IF  
+        END IF
 ! On the first step, on a change of method order, or after a
 ! nonlinear convergence failure with NFLAG = -2, set IPUP = MITER
 ! to force a Jacobian update when MITER /= 0.
@@ -12059,8 +12059,8 @@
 !         Compute multipliers.
 
           T = -ONE/A(K,K)
-! Original:          
-!         CALL DSCAL_F90(N-K,T,A(K+1,K),1)         
+! Original:
+!         CALL DSCAL_F90(N-K,T,A(K+1,K),1)
           CALL DSCAL_F90(N-K,T,A(K+1:N,K),1)
 
 !         Row elimination with column indexing.
@@ -12071,7 +12071,7 @@
             A(L,J) = A(K,J)
             A(K,J) = T
 20          CONTINUE
-! Original:            
+! Original:
 !           CALL DAXPY_F90(N-K,T,A(K+1,K),1,A(K+1,J),1)
             CALL DAXPY_F90(N-K,T,A(K+1:N,K),1,A(K+1:N,J),1)
           END DO
@@ -13859,7 +13859,7 @@
           END DO
 
 !         Check the stopping criterion.
- 
+
           IF (DD<PREC*DXMAX) GOTO 140
 120     END DO
 !       More than MAXIT iterations required.
@@ -18677,7 +18677,7 @@
 !       mba = min(mband,n)
 !          Groups: j=1,...,mba
 !             Columns in group j: jj=j,...,n by mband
-!                Rows in column jj: i1=max(jj-mu,1),...,i2=min(jj+ml,n)       
+!                Rows in column jj: i1=max(jj-mu,1),...,i2=min(jj+ml,n)
 
         IF (IOPT(1) == 0 .OR. IOPT(1) == 2) THEN
           JFIRST = 1
@@ -18764,7 +18764,7 @@
              IF (IOPT(1) == 0) THEN
                 IF (JCOL == NUMGRP) Y(JCOL) = WK(N+JCOL)
              ELSE
-                IF (IOPT(1) == 1) Y(JCOL) = WK(N+JCOL) 
+                IF (IOPT(1) == 1) Y(JCOL) = WK(N+JCOL)
              END IF
           END IF
         END DO
@@ -18782,7 +18782,7 @@
              IF (IOPT(1) == 0) THEN
                 IF (JCOL == NUMGRP) DOTHISBLOCK = .TRUE.
              ELSE
-                IF(IOPT(1) == 1) DOTHISBLOCK = .TRUE. 
+                IF(IOPT(1) == 1) DOTHISBLOCK = .TRUE.
              END IF
           END IF
           IF (DOTHISBLOCK) THEN
@@ -19006,7 +19006,7 @@
 ! LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 ! ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ! POSSIBILITY OF SUCH DAMAGE.
-  
+
   MODULE DVODE_F90_M2
 
 ! This version is the August 2013 release.
@@ -19596,9 +19596,9 @@
 ! are not appropriate for all problems.
 !
 ! RELERR can be set to a scalar value as follows.
-! Determine the number of significant digits of accuracy desired, 
+! Determine the number of significant digits of accuracy desired,
 ! which will be a positive integer, say, N.
-! Then set RELERR = 10**-(N+1). 
+! Then set RELERR = 10**-(N+1).
 ! The authors recommend that RELERR be no larger than 10**-4.
 ! The authors recommend a vector valued absolute error tolerance,
 ! which can be set as follows.
@@ -20942,7 +20942,7 @@
           MODULE PROCEDURE CHECK_STAT
 
 !         JACSP can be called to calculate a Jacobian using Doug Salane's
-!         algoritm 
+!         algoritm
           MODULE PROCEDURE JACSP
 
 !         DVDSM can be called to calculate sparse pointer arrays needed
@@ -20988,7 +20988,7 @@
         ALLOW_DEFAULT_TOLS, BUILD_IAJA, BOUNDS, CHANGED_ACOR, GROW, IAJA_CALLED,&
         J_HAS_BEEN_COMPUTED, J_IS_CONSTANT, LBIG, LBIG1, LBLOCK, MA48_WAS_USED, &
         OK_TO_CALL_MA28, SUBS, SUPS, OPTS_CALLED, REDO_PIVOT_SEQUENCE,          &
-        SCALE_MATRIX, SPARSE, USE_FAST_FACTOR, YMAXWARN  
+        SCALE_MATRIX, SPARSE, USE_FAST_FACTOR, YMAXWARN
 ! ..
 ! .. Local Arrays ..
       REAL (WP), ALLOCATABLE, PRIVATE :: ACOR(:), CSCALEX(:), EWT(:),           &
@@ -21286,8 +21286,8 @@
 ! number of steps to be changed without restarting the integration.
 ! ..
 !                     Quick Summary of Options
-! HMAX                   - Maximum step size in DVODE 
-! HMIN                   - Minimum step size in DVODE 
+! HMAX                   - Maximum step size in DVODE
+! HMIN                   - Minimum step size in DVODE
 ! MXSTEP                 - Maximum number of integration steps in DVODE
 ! ..
      IMPLICIT NONE
@@ -21440,7 +21440,7 @@
 !       DO I = 1, NEQ
 !          PD(I,J) = ... DF(I)/DY(J)
 !       END DO
-!    END DO       
+!    END DO
 !
 ! For a banded Jacobian, load PD(I-J+MU+1,J) with
 ! DF(I)/DY(J) where ML is the lower bandwidth
@@ -21483,7 +21483,7 @@
 ! ..
         RUSER(1:LRWUSER) = ZERO
         IUSER(1:LIWUSER) = 0
-        
+
 !       Allow default error tolerances?
         ALLOW_DEFAULT_TOLS = .FALSE.
 
@@ -21856,8 +21856,8 @@
 !                     Quick Summary of Options
 
 ! DENSE_J                - Jacobian is sparse alternative to MF
-! BANDED_J               - Jacobian is banded alternative to MF 
-! SPARSE_J               - Jacobian is sparse alternative to MF   
+! BANDED_J               - Jacobian is banded alternative to MF
+! SPARSE_J               - Jacobian is sparse alternative to MF
 ! USER_SUPPLIED_JACOBIAN - User will supply Jacobian subroutine
 !                          (user supplied subroutine JAC required)
 ! LOWER_BANDWIDTH        - Lower bandwidth ML in DVODE
@@ -21867,8 +21867,8 @@
 ! ABSERR_VECTOR          - Vector absolute error tolerance in DVODE
 ! TCRIT                  - Critical time TCRIT in DVODE
 ! H0                     - Starting step size in DVODE
-! HMAX                   - Maximum step size in DVODE 
-! HMIN                   - Minimum step size in DVODE 
+! HMAX                   - Maximum step size in DVODE
+! HMIN                   - Minimum step size in DVODE
 ! MAXORD                 - Maximum integration order in DVODE
 ! MXSTEP                 - Maximum number of integration steps
 !                          in DVODE
@@ -21876,7 +21876,7 @@
 ! NZSWAG                 - guess for the number of nonzeros in sparse
 !                          Jacobian
 ! USER_SUPPLIED_SPARSITY - user will supply sparsity structure
-!                          arrays by calling USERSETS_IAJA 
+!                          arrays by calling USERSETS_IAJA
 ! MA28_RPS               - Redo MA28AD pivot sequence if a singularity
 !                          is encountered
 ! NEVENTS                - number of user defined root finding functions
@@ -21980,8 +21980,8 @@
 !   OPTS%ATOL   = Absolute error tolerance(s) (ATOL)
 !   OPTS%RTOL   = Relative error tolerance(s) (RTOL)
 !   OPTS%DENSE  = Use dense linear algebra
-!   OPTS%BANDED = Use banded linear algebra 
-!   OPTS%SPARSE = Use sparse linear algebra 
+!   OPTS%BANDED = Use banded linear algebra
+!   OPTS%SPARSE = Use sparse linear algebra
 !   OPTS%IOPT   = DVODE optional parameter input flag (IOPT)
 !   OPTS%NG     = Number of event functions
 !   RUSER(1)    = TCRIT (don't step past)
@@ -22155,7 +22155,7 @@
 !       DO I = 1, NEQ
 !          PD(I,J) = ... DF(I)/DY(J)
 !       END DO
-!    END DO       
+!    END DO
 !
 ! For a banded Jacobian, load PD(I-J+MU+1,J) with
 ! DF(I)/DY(J) where ML is the lower bandwidth
@@ -22205,7 +22205,7 @@
 !         Recommendation:
 !         Use the DENSE or BANDED option if possible. They do
 !         not require use of most of the options described here.
-!    
+!
 !  (2) The Jacobian is approximated internally using differences
 !      if you do not provide an analytic Jacobian. The option
 !      USER_SUPPLIED_JACOBIAN=.TRUE. may be used if you wish to
@@ -22313,7 +22313,7 @@
 ! ..
     RUSER(1:LRWUSER) = ZERO
     IUSER(1:LIWUSER) = 0
-    
+
 !   Allow default error tolerances?
     ALLOW_DEFAULT_TOLS = .FALSE.
 
@@ -22839,8 +22839,8 @@
 
 ! METHOD_FLAG            - any legal value of MF as in DVODE
 ! DENSE_J                - Jacobian is sparse alternative to MF
-! BANDED_J               - Jacobian is banded alternative to MF 
-! SPARSE_J               - Jacobian is sparse alternative to MF   
+! BANDED_J               - Jacobian is banded alternative to MF
+! SPARSE_J               - Jacobian is sparse alternative to MF
 ! USER_SUPPLIED_JACOBIAN - User will supply Jacobian subroutine
 !                          (user supplied subroutine JAC required)
 ! SAVE_JACOBIAN          - Jacobian will be saved and reused
@@ -22857,8 +22857,8 @@
 ! ABSERR_VECTOR          - Vector absolute error tolerance in DVODE
 ! TCRIT                  - Critical time TCRIT in DVODE
 ! H0                     - Starting step size in DVODE
-! HMAX                   - Maximum step size in DVODE 
-! HMIN                   - Minimum step size in DVODE 
+! HMAX                   - Maximum step size in DVODE
+! HMIN                   - Minimum step size in DVODE
 ! MAXORD                 - Maximum integration order in DVODE
 ! MXSTEP                 - Maximum number of integration steps
 !                          in DVODE
@@ -22870,7 +22870,7 @@
 ! NZSWAG                 - guess for the number of nonzeros in sparse
 !                          Jacobian
 ! USER_SUPPLIED_SPARSITY - user will supply sparsity structure
-!                          arrays by calling USERSETS_IAJA 
+!                          arrays by calling USERSETS_IAJA
 ! MA28_ELBOW_ROOM        - Supply an integer greater than 2 if you
 !                          wish to increase the elbow room in the
 !                          MA28 work arrays (by MA28_ELBOW_ROOM * NZA).
@@ -23024,8 +23024,8 @@
 !   OPTS%ATOL   = Absolute error tolerance(s) (ATOL)
 !   OPTS%RTOL   = Relative error tolerance(s) (RTOL)
 !   OPTS%DENSE  = Use dense linear algebra
-!   OPTS%BANDED = Use banded linear algebra 
-!   OPTS%SPARSE = Use sparse linear algebra 
+!   OPTS%BANDED = Use banded linear algebra
+!   OPTS%SPARSE = Use sparse linear algebra
 !   OPTS%IOPT   = DVODE optional parameter input flag (IOPT)
 !   OPTS%NG     = Number of event functions
 !   RUSER(1)    = TCRIT (don't step past)
@@ -23276,7 +23276,7 @@
 !       DO I = 1, NEQ
 !          PD(I,J) = ... DF(I)/DY(J)
 !       END DO
-!    END DO       
+!    END DO
 !
 ! For a banded Jacobian, load PD(I-J+MU+1,J) with
 ! DF(I)/DY(J) where ML is the lower bandwidth
@@ -23326,7 +23326,7 @@
 !         Recommendation:
 !         Use the DENSE or BANDED option if possible. They do
 !         not require use of most of the options described here.
-!    
+!
 !  (2) The Jacobian is approximated internally using differences
 !      if you do not provide an analytic Jacobian. The option
 !      USER_SUPPLIED_JACOBIAN=.TRUE. may be used if you wish to
@@ -23498,7 +23498,7 @@
 ! ..
     RUSER(1:LRWUSER) = ZERO
     IUSER(1:LIWUSER) = 0
-    
+
 !   Allow default error tolerances?
     ALLOW_DEFAULT_TOLS = .FALSE.
 
@@ -24835,7 +24835,7 @@
 !     Allocate the RWORK and WM work arrays if they haven't already
 !     been allocated in a previous call.
 !     LRW = 20 + (MAXORD + 1) * NEQ
-!     LWMDIM =     
+!     LWMDIM =
 !            0                        for MF = 10,
 !            2 * NEQ**2               for MF = 11 or 12,
 !            NEQ**2                   for MF = -11 or -12,
@@ -25371,7 +25371,7 @@
         CALL XERRDV(MSG,950,1,1,MXHNIL,0,0,ZERO,ZERO)
 230     CONTINUE
         IF (BOUNDS) THEN
-!         Check positive components for infeasible prediction; reduce 
+!         Check positive components for infeasible prediction; reduce
 !         step size if infeasible prediction will occur in DVNLSD.
           ACOR(1:N) = RWORK(LYH:LYH+N-1)
 !         Predict:
@@ -29364,7 +29364,7 @@
         IF (DUMMY) THEN
           WM(1) = ZERO
           IWM(1) = 0
-        END IF  
+        END IF
 ! On the first step, on a change of method order, or after a
 ! nonlinear convergence failure with NFLAG = -2, set IPUP = MITER
 ! to force a Jacobian update when MITER /= 0.
@@ -31030,8 +31030,8 @@
 !         Compute multipliers.
 
           T = -ONE/A(K,K)
-! Original:          
-!         CALL DSCAL_F90(N-K,T,A(K+1,K),1)         
+! Original:
+!         CALL DSCAL_F90(N-K,T,A(K+1,K),1)
           CALL DSCAL_F90(N-K,T,A(K+1:N,K),1)
 
 !         Row elimination with column indexing.
@@ -31042,7 +31042,7 @@
             A(L,J) = A(K,J)
             A(K,J) = T
 20          CONTINUE
-! Original:            
+! Original:
 !           CALL DAXPY_F90(N-K,T,A(K+1,K),1,A(K+1,J),1)
             CALL DAXPY_F90(N-K,T,A(K+1:N,K),1,A(K+1:N,J),1)
           END DO
@@ -32830,7 +32830,7 @@
           END DO
 
 !         Check the stopping criterion.
- 
+
           IF (DD<PREC*DXMAX) GOTO 140
 120     END DO
 !       More than MAXIT iterations required.
@@ -37648,7 +37648,7 @@
 !       mba = min(mband,n)
 !          Groups: j=1,...,mba
 !             Columns in group j: jj=j,...,n by mband
-!                Rows in column jj: i1=max(jj-mu,1),...,i2=min(jj+ml,n)       
+!                Rows in column jj: i1=max(jj-mu,1),...,i2=min(jj+ml,n)
 
         IF (IOPT(1) == 0 .OR. IOPT(1) == 2) THEN
           JFIRST = 1
@@ -37735,7 +37735,7 @@
              IF (IOPT(1) == 0) THEN
                 IF (JCOL == NUMGRP) Y(JCOL) = WK(N+JCOL)
              ELSE
-                IF (IOPT(1) == 1) Y(JCOL) = WK(N+JCOL) 
+                IF (IOPT(1) == 1) Y(JCOL) = WK(N+JCOL)
              END IF
           END IF
         END DO
@@ -37753,7 +37753,7 @@
              IF (IOPT(1) == 0) THEN
                 IF (JCOL == NUMGRP) DOTHISBLOCK = .TRUE.
              ELSE
-                IF(IOPT(1) == 1) DOTHISBLOCK = .TRUE. 
+                IF(IOPT(1) == 1) DOTHISBLOCK = .TRUE.
              END IF
           END IF
           IF (DOTHISBLOCK) THEN
