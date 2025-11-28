@@ -2030,7 +2030,7 @@
         ICN(:), IDX(:), IGP(:), IKEEP28(:,:), IW28(:,:), IWORK(:), JA(:),       &
         JAB(:), JAN(:), JATEMP(:), JGP(:), JROOT(:), JVECT(:), SUBDS(:), SUPDS(:)
       INTEGER, PRIVATE :: IDISP(2), IUSER(30), LNPIV(10), LPIV(10)
-      INTEGER, PRIVATE :: MORD(2) = (/ 12, 5 /)
+      INTEGER, PRIVATE :: MORD(2)
 ! ..
 ! .. Public Subroutines and Functions ..
   PUBLIC ::                                                        &
@@ -2059,6 +2059,59 @@
 !_______________________________________________________________________
 ! *****MA48 build change point. Insert the above line.
 !_______________________________________________________________________
+
+! OpenMP threadprivate directives for thread-safe operation
+! JACSPDB arrays and scalars
+!$omp threadprivate(USE_JACSP, LIKE_ORIGINAL_VODE)
+!$omp threadprivate(INFODS, LIWADS, MAXGRPDS, MINGRPDS, NRFJACDS, NCFJACDS, LWKDS, LIWKDS)
+!$omp threadprivate(INDROWDS, INDCOLDS, NGRPDS, IPNTRDS, JPNTRDS, IWADS, IWKDS, IOPTDS)
+!$omp threadprivate(YSCALEDS, WKDS, FACDS)
+!$omp threadprivate(U125, U325)
+
+! Solver scalars (REAL)
+!$omp threadprivate(ACNRM, ALPHA, BIG, BIG1, CCMXJ, CGCE, CONP, CRATE)
+!$omp threadprivate(DRC, DRES, DXMAX, EPS, ERRMAX, ETA, ETAMAX, FRACINT, FRACSUB, H, HMIN)
+!$omp threadprivate(HMXI, HNEW, HSCAL, HU, MEPS, MRESID, MRMIN, PRL1, RC, RESID, RL1)
+!$omp threadprivate(RMIN, SETH, T0ST, THEMAX, TLAST, TN, TOL, TOL1, TOUTC, UMAX, UROUND)
+!$omp threadprivate(U_PIVOT, X2, WM1, WM2)
+
+! Solver scalars (INTEGER)
+!$omp threadprivate(ADDTOJA, ADDTONNZ, CONSECUTIVE_CFAILS)
+!$omp threadprivate(CONSECUTIVE_EFAILS, ELBOW_ROOM, IADIM, IANPIV, IAVPIV)
+!$omp threadprivate(ICF, ICNCP, IFAIL, IMAX, IMIN, INEWJ, INIT, IPUP, IRANK, IRFND, IRNCP)
+!$omp threadprivate(ISTART, ISTATC, ITASKC, JADIM, JCUR, JMIN, JSTART, JSV, KFLAG, KOUNTL)
+!$omp threadprivate(KUTH, L, LARGE, LAST, LENIGP, LICN_ALL, LIRN_ALL, LIW, LIWM, LMAX)
+!$omp threadprivate(LOCJS, LP, LRW, LWM, LWMDIM, LWMTEMP, LYH, LYHTEMP, MANPIV, MAPIV, MAXG)
+!$omp threadprivate(MAXIT, MAXORD, MB28, MB48, METH, MICN, MICNCP, MINICN, MINIRN, MIRANK)
+!$omp threadprivate(MIRN, MIRNCP, MITER, MLP, MOSS, MP, MSBG, MSBJ, MXHNIL, MXSTEP, N, NZB)
+!$omp threadprivate(NCFN, NDROP, NDROP1, NDX, NETF, NEWH, NEWQ, NFE, NGC, NGE, NGP, NHNIL)
+!$omp threadprivate(NJE, NLP, NLU, NNI, NNZ, NOITER, NQ, NQNYH, NQU, NQWAIT, NSLG, NSLJ)
+!$omp threadprivate(NSLP, NSRCH, NSRCH1, NST, NSUBS, NSUPS, NUM, NUMNZ, NYH, NZ_ALL)
+!$omp threadprivate(NZ_SWAG, PREVIOUS_MAXORD, WPD, WPS, MA28AD_CALLS, MA28BD_CALLS)
+!$omp threadprivate(MA28CD_CALLS, MC19AD_CALLS, MAX_MINIRN, MAX_MINICN, MAX_NNZ, BNGRP)
+
+! Solver scalars (LOGICAL)
+!$omp threadprivate(ABORT, ABORT1, ABORT2, ABORT3, ABORTA, ABORTB)
+!$omp threadprivate(ALLOW_DEFAULT_TOLS, BUILD_IAJA, BOUNDS, CHANGED_ACOR, GROW, IAJA_CALLED)
+!$omp threadprivate(J_HAS_BEEN_COMPUTED, J_IS_CONSTANT, LBIG, LBIG1, LBLOCK, MA48_WAS_USED)
+!$omp threadprivate(OK_TO_CALL_MA28, SUBS, SUPS, OPTS_CALLED, REDO_PIVOT_SEQUENCE)
+!$omp threadprivate(SCALE_MATRIX, SPARSE, USE_FAST_FACTOR, YMAXWARN)
+
+! Allocatable work arrays (REAL)
+!$omp threadprivate(ACOR, CSCALEX, EWT, FPTEMP, FTEMP, FTEMP1, G0, G1, GX, JMAT)
+!$omp threadprivate(LB, PMAT, RSCALEX, RWORK, SAVF, UB, WM, WMTEMP, WSCALEX, YHNQP2)
+!$omp threadprivate(YHTEMP, YMAX, YNNEG, YTEMP, DTEMP)
+
+! Fixed-size work arrays (REAL)
+!$omp threadprivate(EL, RUSER, TAU, TQ)
+
+! Allocatable work arrays (INTEGER)
+!$omp threadprivate(BIGP, BJGP, IA, IAB, IAN, ICN, IDX, IGP, IKEEP28, IW28, IWORK)
+!$omp threadprivate(JA, JAB, JAN, JATEMP, JGP, JROOT, JVECT, SUBDS, SUPDS)
+
+! Fixed-size work arrays (INTEGER)
+!$omp threadprivate(IDISP, IUSER, LNPIV, LPIV, MORD)
+
 ! ..
 ! .. Intrinsic Functions ..
       INTRINSIC KIND
@@ -2071,6 +2124,7 @@
         ABORT2/ .TRUE./, ABORT3/ .FALSE./, ABORT/ .FALSE./, MIRN/0/,  &
         MICN/0/, MIRNCP/0/, MICNCP/0/, MIRANK/0/, NDROP1/0/,          &
         MRMIN/0.0D0/, MRESID/0/, OK_TO_CALL_MA28/.FALSE./
+      DATA MORD/12, 5/
 ! ..
 ! END OF DVODE_F90 PRIVATE SECTION.
 !_______________________________________________________________________
@@ -21001,7 +21055,7 @@
         ICN(:), IDX(:), IGP(:), IKEEP28(:,:), IW28(:,:), IWORK(:), JA(:),       &
         JAB(:), JAN(:), JATEMP(:), JGP(:), JROOT(:), JVECT(:), SUBDS(:), SUPDS(:)
       INTEGER, PRIVATE :: IDISP(2), IUSER(30), LNPIV(10), LPIV(10)
-      INTEGER, PRIVATE :: MORD(2) = (/ 12, 5 /)
+      INTEGER, PRIVATE :: MORD(2)
 ! ..
 ! .. Public Subroutines and Functions ..
   PUBLIC ::                                                        &
@@ -21030,6 +21084,59 @@
 !_______________________________________________________________________
 ! *****MA48 build change point. Insert the above line.
 !_______________________________________________________________________
+
+! OpenMP threadprivate directives for thread-safe operation
+! JACSPDB arrays and scalars
+!$omp threadprivate(USE_JACSP, LIKE_ORIGINAL_VODE)
+!$omp threadprivate(INFODS, LIWADS, MAXGRPDS, MINGRPDS, NRFJACDS, NCFJACDS, LWKDS, LIWKDS)
+!$omp threadprivate(INDROWDS, INDCOLDS, NGRPDS, IPNTRDS, JPNTRDS, IWADS, IWKDS, IOPTDS)
+!$omp threadprivate(YSCALEDS, WKDS, FACDS)
+!$omp threadprivate(U125, U325)
+
+! Solver scalars (REAL)
+!$omp threadprivate(ACNRM, ALPHA, BIG, BIG1, CCMXJ, CGCE, CONP, CRATE)
+!$omp threadprivate(DRC, DRES, DXMAX, EPS, ERRMAX, ETA, ETAMAX, FRACINT, FRACSUB, H, HMIN)
+!$omp threadprivate(HMXI, HNEW, HSCAL, HU, MEPS, MRESID, MRMIN, PRL1, RC, RESID, RL1)
+!$omp threadprivate(RMIN, SETH, T0ST, THEMAX, TLAST, TN, TOL, TOL1, TOUTC, UMAX, UROUND)
+!$omp threadprivate(U_PIVOT, X2, WM1, WM2)
+
+! Solver scalars (INTEGER)
+!$omp threadprivate(ADDTOJA, ADDTONNZ, CONSECUTIVE_CFAILS)
+!$omp threadprivate(CONSECUTIVE_EFAILS, ELBOW_ROOM, IADIM, IANPIV, IAVPIV)
+!$omp threadprivate(ICF, ICNCP, IFAIL, IMAX, IMIN, INEWJ, INIT, IPUP, IRANK, IRFND, IRNCP)
+!$omp threadprivate(ISTART, ISTATC, ITASKC, JADIM, JCUR, JMIN, JSTART, JSV, KFLAG, KOUNTL)
+!$omp threadprivate(KUTH, L, LARGE, LAST, LENIGP, LICN_ALL, LIRN_ALL, LIW, LIWM, LMAX)
+!$omp threadprivate(LOCJS, LP, LRW, LWM, LWMDIM, LWMTEMP, LYH, LYHTEMP, MANPIV, MAPIV, MAXG)
+!$omp threadprivate(MAXIT, MAXORD, MB28, MB48, METH, MICN, MICNCP, MINICN, MINIRN, MIRANK)
+!$omp threadprivate(MIRN, MIRNCP, MITER, MLP, MOSS, MP, MSBG, MSBJ, MXHNIL, MXSTEP, N, NZB)
+!$omp threadprivate(NCFN, NDROP, NDROP1, NDX, NETF, NEWH, NEWQ, NFE, NGC, NGE, NGP, NHNIL)
+!$omp threadprivate(NJE, NLP, NLU, NNI, NNZ, NOITER, NQ, NQNYH, NQU, NQWAIT, NSLG, NSLJ)
+!$omp threadprivate(NSLP, NSRCH, NSRCH1, NST, NSUBS, NSUPS, NUM, NUMNZ, NYH, NZ_ALL)
+!$omp threadprivate(NZ_SWAG, PREVIOUS_MAXORD, WPD, WPS, MA28AD_CALLS, MA28BD_CALLS)
+!$omp threadprivate(MA28CD_CALLS, MC19AD_CALLS, MAX_MINIRN, MAX_MINICN, MAX_NNZ, BNGRP)
+
+! Solver scalars (LOGICAL)
+!$omp threadprivate(ABORT, ABORT1, ABORT2, ABORT3, ABORTA, ABORTB)
+!$omp threadprivate(ALLOW_DEFAULT_TOLS, BUILD_IAJA, BOUNDS, CHANGED_ACOR, GROW, IAJA_CALLED)
+!$omp threadprivate(J_HAS_BEEN_COMPUTED, J_IS_CONSTANT, LBIG, LBIG1, LBLOCK, MA48_WAS_USED)
+!$omp threadprivate(OK_TO_CALL_MA28, SUBS, SUPS, OPTS_CALLED, REDO_PIVOT_SEQUENCE)
+!$omp threadprivate(SCALE_MATRIX, SPARSE, USE_FAST_FACTOR, YMAXWARN)
+
+! Allocatable work arrays (REAL)
+!$omp threadprivate(ACOR, CSCALEX, EWT, FPTEMP, FTEMP, FTEMP1, G0, G1, GX, JMAT)
+!$omp threadprivate(LB, PMAT, RSCALEX, RWORK, SAVF, UB, WM, WMTEMP, WSCALEX, YHNQP2)
+!$omp threadprivate(YHTEMP, YMAX, YNNEG, YTEMP, DTEMP)
+
+! Fixed-size work arrays (REAL)
+!$omp threadprivate(EL, RUSER, TAU, TQ)
+
+! Allocatable work arrays (INTEGER)
+!$omp threadprivate(BIGP, BJGP, IA, IAB, IAN, ICN, IDX, IGP, IKEEP28, IW28, IWORK)
+!$omp threadprivate(JA, JAB, JAN, JATEMP, JGP, JROOT, JVECT, SUBDS, SUPDS)
+
+! Fixed-size work arrays (INTEGER)
+!$omp threadprivate(IDISP, IUSER, LNPIV, LPIV, MORD)
+
 ! ..
 ! .. Intrinsic Functions ..
       INTRINSIC KIND
@@ -21042,6 +21149,7 @@
         ABORT2/ .TRUE./, ABORT3/ .FALSE./, ABORT/ .FALSE./, MIRN/0/,  &
         MICN/0/, MIRNCP/0/, MICNCP/0/, MIRANK/0/, NDROP1/0/,          &
         MRMIN/0.0D0/, MRESID/0/, OK_TO_CALL_MA28/.FALSE./
+      DATA MORD/12, 5/
 ! ..
 ! END OF DVODE_F90 PRIVATE SECTION.
 !_______________________________________________________________________
