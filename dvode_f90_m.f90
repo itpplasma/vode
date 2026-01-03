@@ -2035,7 +2035,7 @@
 ! .. Public Subroutines and Functions ..
   PUBLIC ::                                                        &
   DAXPY_F90, DCOPY_F90, DDOT_F90, DGBFA_F90, DGBSL_F90, DGEFA_F90, &
-  DGESL_F90, DSCAL_F90, IDAMAX_F90
+  DGESL_F90, DSCAL_F90, IDAMAX_F90, VODE_THREAD_INIT
 ! ..
 ! .. Private Subroutines and Functions ..
   PRIVATE ::                                                       &
@@ -2130,6 +2130,54 @@
 !_______________________________________________________________________
 
     CONTAINS
+
+!_______________________________________________________________________
+!     VODE_THREAD_INIT - Initialize threadprivate variables for OpenMP
+!     Call this subroutine from each thread before using VODE_F90
+!_______________________________________________________________________
+      SUBROUTINE VODE_THREAD_INIT()
+! Initialize threadprivate variables that would otherwise only be
+! initialized by DATA statements in the master thread
+        IMPLICIT NONE
+
+        ! Initialize logicals from DATA statement
+        OPTS_CALLED = .FALSE.
+        LBIG = .FALSE.
+        LBLOCK = .TRUE.
+        GROW = .TRUE.
+        ABORT1 = .TRUE.
+        ABORT2 = .TRUE.
+        ABORT3 = .FALSE.
+        ABORT = .FALSE.
+        OK_TO_CALL_MA28 = .FALSE.
+
+        ! Initialize integers from DATA statement
+        MP = 6
+        NLP = 6
+        MLP = 6
+        NSRCH = 32768
+        ISTART = 0
+        MAXIT = 16
+        MIRN = 0
+        MICN = 0
+        MIRNCP = 0
+        MICNCP = 0
+        MIRANK = 0
+        NDROP1 = 0
+        MRESID = 0
+
+        ! Initialize reals from DATA statement
+        TOL = 0.0_WP
+        CGCE = 0.5_WP
+        BIG = 0.0_WP
+        MRMIN = 0.0_WP
+
+        ! Initialize array from DATA statement
+        MORD(1) = 12
+        MORD(2) = 5
+
+      END SUBROUTINE VODE_THREAD_INIT
+!_______________________________________________________________________
 
       SUBROUTINE VODE_F90(F,NEQ,Y,T,TOUT,ITASK,ISTATE,OPTS,J_FCN,G_FCN)
 ! ..
@@ -21060,7 +21108,7 @@
 ! .. Public Subroutines and Functions ..
   PUBLIC ::                                                        &
   DAXPY_F90, DCOPY_F90, DDOT_F90, DGBFA_F90, DGBSL_F90, DGEFA_F90, &
-  DGESL_F90, DSCAL_F90, IDAMAX_F90
+  DGESL_F90, DSCAL_F90, IDAMAX_F90, VODE_THREAD_INIT
 ! ..
 ! .. Private Subroutines and Functions ..
   PRIVATE ::                                                       &
@@ -21155,6 +21203,54 @@
 !_______________________________________________________________________
 
     CONTAINS
+
+!_______________________________________________________________________
+!     VODE_THREAD_INIT - Initialize threadprivate variables for OpenMP
+!     Call this subroutine from each thread before using VODE_F90
+!_______________________________________________________________________
+      SUBROUTINE VODE_THREAD_INIT()
+! Initialize threadprivate variables that would otherwise only be
+! initialized by DATA statements in the master thread
+        IMPLICIT NONE
+
+        ! Initialize logicals from DATA statement
+        OPTS_CALLED = .FALSE.
+        LBIG = .FALSE.
+        LBLOCK = .TRUE.
+        GROW = .TRUE.
+        ABORT1 = .TRUE.
+        ABORT2 = .TRUE.
+        ABORT3 = .FALSE.
+        ABORT = .FALSE.
+        OK_TO_CALL_MA28 = .FALSE.
+
+        ! Initialize integers from DATA statement
+        MP = 6
+        NLP = 6
+        MLP = 6
+        NSRCH = 32768
+        ISTART = 0
+        MAXIT = 16
+        MIRN = 0
+        MICN = 0
+        MIRNCP = 0
+        MICNCP = 0
+        MIRANK = 0
+        NDROP1 = 0
+        MRESID = 0
+
+        ! Initialize reals from DATA statement
+        TOL = 0.0_WP
+        CGCE = 0.5_WP
+        BIG = 0.0_WP
+        MRMIN = 0.0_WP
+
+        ! Initialize array from DATA statement
+        MORD(1) = 12
+        MORD(2) = 5
+
+      END SUBROUTINE VODE_THREAD_INIT
+!_______________________________________________________________________
 
       SUBROUTINE VODE_F90(F,NEQ,Y,T,TOUT,ITASK,ISTATE,OPTS,J_FCN,G_FCN)
 ! ..
